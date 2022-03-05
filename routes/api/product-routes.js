@@ -50,20 +50,6 @@ router.post("/", async (req, res) => {
     }
   */
 
-  //mycodestart
-  // try {
-  //   const productData = await Product.create({
-  //     product_name: req.body.product_name,
-  //     price: req.body.price,
-  //     stock: req.body.price,
-  //     tagIds: req.body.tagIds
-  //   });
-  //   res.status(200).json(productData);
-  // } catch (err) {
-  //   res.status(400).json(err);
-  // }
-
-  //mycodeend
   Product.create({
     product_name: req.body.product_name,
     price: req.body.price,
@@ -92,6 +78,7 @@ router.post("/", async (req, res) => {
     });
 });
 
+//original code for testing
 //   Product.create(req.body)
 //     .then((product) => {
 //       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -113,11 +100,12 @@ router.post("/", async (req, res) => {
 //       res.status(400).json(err);
 //     });
 // });
+//end original code for testing
 
 // update product
 router.put("/:id", async (req, res) => {
   // update product data
-  Product.update(req.body, {
+  const productData = Product.update(req.body, {
     where: {
       id: req.params.id,
     },
