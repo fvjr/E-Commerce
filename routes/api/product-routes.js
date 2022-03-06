@@ -105,11 +105,20 @@ router.post("/", async (req, res) => {
 // update product
 router.put("/:id", async (req, res) => {
   // update product data
-  const productData = Product.update(req.body, {
-    where: {
-      id: req.params.id,
+  const productData = Product.update(
+    {
+      product_name: req.body.product_name,
+      price: req.body.price,
+      stock: req.body.price,
+      category_id: req.body.category_id,
+      tags: req.body.tags,
     },
-  })
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
     .then((product) => {
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
